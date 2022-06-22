@@ -29,7 +29,11 @@ defmodule ToyRobot.Robot do
     end
   end
 
-  def left(%Robot{facing: curr_facing} = robot) do
+  def rotate(robot, :right), do: right(robot)
+
+  def rotate(robot, :left), do: left(robot)
+
+  defp left(%Robot{facing: curr_facing} = robot) do
     case curr_facing do
       :north -> %{robot | facing: :west}
       :east -> %{robot | facing: :north}
@@ -38,7 +42,7 @@ defmodule ToyRobot.Robot do
     end
   end
 
-  def right(%Robot{facing: curr_facing} = robot) do
+  defp right(%Robot{facing: curr_facing} = robot) do
     case curr_facing do
       :north -> %{robot | facing: :east}
       :east -> %{robot | facing: :south}

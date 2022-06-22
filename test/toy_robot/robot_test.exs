@@ -62,5 +62,27 @@ defmodule ToyRobot.RobotTest do
     end
   end
 
+  describe "rotate/2" do
+    test "rotates a robot 90 degrees clockwise" do
+      robot = setup_test_robot()
+
+      rotated_right_robot = Robot.rotate(robot, :right)
+
+      assert rotated_right_robot.facing == :east
+    end
+
+    test "rotations can be chained" do
+      robot = setup_test_robot()
+
+      rotated_right_robot =
+        robot
+        |> Robot.rotate(:right)
+        |> Robot.rotate(:right)
+        |> Robot.rotate(:left)
+
+      assert rotated_right_robot.facing == :east
+    end
+  end
+
   defp setup_test_robot(), do: %Robot{north: 0, east: 0, facing: :north}
 end

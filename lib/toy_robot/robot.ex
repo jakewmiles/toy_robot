@@ -26,7 +26,7 @@ defmodule ToyRobot.Robot do
     %Robot{
       north: validate_coord(y),
       east: validate_coord(x),
-      facing: direction
+      facing: validate_direction(direction)
     }
   end
 
@@ -98,6 +98,14 @@ defmodule ToyRobot.Robot do
       :west -> %{robot | facing: :north}
     end
   end
+
+  defguard is_valid_direction(direction)
+           when is_atom(direction) and direction in [:north, :east, :south, :west]
+
+  defp validate_direction(direction) when is_valid_direction(direction), do: direction
+
+  defp validate_direction(_direction),
+    do: raise("Invalid direction, must be one of :north, :east, :south or :west")
 
   defp move_east(%Robot{east: curr_east} = robot) do
     %{robot | east: validate_coord(curr_east + 1)}

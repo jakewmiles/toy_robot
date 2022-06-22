@@ -34,5 +34,9 @@ Enum.reduce(rest, initial_robot, fn instruction, robot ->
     "REPORT" ->
       IO.puts(Robot.report(robot))
       robot
+
+    _ ->
+      IO.puts("Invalid command... Skipping...")
+      robot
   end
 end)

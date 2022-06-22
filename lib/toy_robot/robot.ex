@@ -23,7 +23,11 @@ defmodule ToyRobot.Robot do
   %Robot{north: 1, east: 0, facing: :north}
   """
   def place(x, y, direction) do
-    %Robot{north: y, east: x, facing: direction}
+    %Robot{
+      north: validate_coord(y),
+      east: validate_coord(x),
+      facing: direction
+    }
   end
 
   @doc """
@@ -96,18 +100,38 @@ defmodule ToyRobot.Robot do
   end
 
   defp move_east(%Robot{east: curr_east} = robot) do
-    %{robot | east: curr_east + 1}
+    %{robot | east: validate_coord(curr_east + 1)}
   end
 
   defp move_west(%Robot{east: curr_east} = robot) do
-    %{robot | east: curr_east - 1}
+    %{robot | east: validate_coord(curr_east - 1)}
   end
 
   defp move_north(%Robot{north: curr_north} = robot) do
-    %{robot | north: curr_north + 1}
+    %{robot | north: validate_coord(curr_north + 1)}
   end
 
   defp move_south(%Robot{north: curr_north} = robot) do
-    %{robot | north: curr_north - 1}
+    %{robot | north: validate_coord(curr_north - 1)}
+  end
+
+  defp validate_coord(coord) do
+    with true <-
+           is_integer(coord),
+         true <-
+           within_table_range?(coord) do
+      coord
+    else
+      {:error, :above_range} -> 5
+      {:error, :below_range} -> 0
+    end
+  end
+
+  defp within_table_range?(coord) do
+    cond do
+      coord > 5 -> {:error, :above_range}
+      coord < 0 -> {:error, :below_range}
+      true -> true
+    end
   end
 end

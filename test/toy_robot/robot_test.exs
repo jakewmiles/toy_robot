@@ -84,5 +84,13 @@ defmodule ToyRobot.RobotTest do
     end
   end
 
+  describe "report/1" do
+    test "returns a string update of the robot's status" do
+      robot = setup_test_robot()
+
+      assert Robot.report(robot) == "The robot is currently facing north and is located at (0, 0)"
+    end
+  end
+
   defp setup_test_robot(), do: %Robot{north: 0, east: 0, facing: :north}
 end

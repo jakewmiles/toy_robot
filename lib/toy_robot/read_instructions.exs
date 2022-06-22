@@ -21,20 +21,18 @@ Enum.reduce(rest, initial_robot, fn instruction, robot ->
   case split do
     "MOVE" ->
       IO.puts("The robot moves forward...")
-
       Robot.move(robot)
-      |> IO.inspect()
 
     "RIGHT" ->
       IO.puts("The robot rotates right...")
-
       Robot.rotate(robot, :right)
-      |> IO.inspect()
 
     "LEFT" ->
       IO.puts("The robot rotates left...")
-
       Robot.rotate(robot, :right)
-      |> IO.inspect()
+
+    "REPORT" ->
+      IO.puts(Robot.report(robot))
+      robot
   end
 end)

@@ -33,6 +33,10 @@ defmodule ToyRobot.Robot do
 
   def rotate(robot, :left), do: left(robot)
 
+  def report(%Robot{facing: direction, north: north, east: east}) do
+    "The robot is currently facing #{direction} and is located at (#{east}, #{north})"
+  end
+
   defp left(%Robot{facing: curr_facing} = robot) do
     case curr_facing do
       :north -> %{robot | facing: :west}

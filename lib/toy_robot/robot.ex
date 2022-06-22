@@ -26,75 +26,19 @@ defmodule ToyRobot.Robot do
     end
   end
 
-  @doc """
-  Moves the robot east one space.
-
-  ## Examples
-
-    iex> alias ToyRobot.Robot
-    ToyRobot.Robot
-    iex> robot = %Robot{east: 0}
-    %Robot{east: 0}
-    iex> robot |> Robot.move_east
-    %Robot{east: 1}
-    iex> robot |> Robot.move_east |> Robot.move_east |> Robot.move_east
-    %Robot{east: 3}
-  """
-  def move_east(%Robot{east: curr_east} = robot) do
+  defp move_east(%Robot{east: curr_east} = robot) do
     %{robot | east: curr_east + 1}
   end
 
-  @doc """
-  Moves the robot west one space.
-
-  ## Examples
-
-    iex> alias ToyRobot.Robot
-    ToyRobot.Robot
-    iex> robot = %Robot{east: 0}
-    %Robot{east: 0}
-    iex> robot |> Robot.move_west
-    %Robot{east: -1}
-    iex> robot |> Robot.move_west |> Robot.move_west |> Robot.move_west
-    %Robot{east: -3}
-  """
-  def move_west(%Robot{east: curr_east} = robot) do
+  defp move_west(%Robot{east: curr_east} = robot) do
     %{robot | east: curr_east - 1}
   end
 
-  @doc """
-  Moves the robot north one space.
-
-  ## Examples
-
-    iex> alias ToyRobot.Robot
-    ToyRobot.Robot
-    iex> robot = %Robot{north: 0}
-    %Robot{north: 0}
-    iex> robot |> Robot.move_north
-    %Robot{north: 1}
-    iex> robot |> Robot.move_north |> Robot.move_north |> Robot.move_north
-    %Robot{north: 3}
-  """
-  def move_north(%Robot{north: curr_north} = robot) do
+  defp move_north(%Robot{north: curr_north} = robot) do
     %{robot | north: curr_north + 1}
   end
 
-  @doc """
-  Moves the robot south one space.
-
-  ## Examples
-
-    iex> alias ToyRobot.Robot
-    ToyRobot.Robot
-    iex> robot = %Robot{north: 0}
-    %Robot{north: 0}
-    iex> robot |> Robot.move_south
-    %Robot{north: -1}
-    iex> robot |> Robot.move_south |> Robot.move_south |> Robot.move_south
-    %Robot{north: -3}
-  """
-  def move_south(%Robot{north: curr_north} = robot) do
+  defp move_south(%Robot{north: curr_north} = robot) do
     %{robot | north: curr_north - 1}
   end
 end

@@ -1,6 +1,6 @@
 defmodule ToyRobot.Robot do
   @doc """
-  Moves the robot forward one space.
+  Moves the robot east one space.
 
   ## Examples
 
@@ -8,13 +8,12 @@ defmodule ToyRobot.Robot do
     ToyRobot.Robot
     iex> robot = %{position: 0}
     %{position: 0}
-    iex> robot |> Robot.move
+    iex> robot |> Robot.move_east
     %{position: 1}
-    iex> robot |> Robot.move |> Robot.move |> Robot.move
+    iex> robot |> Robot.move_east |> Robot.move_east |> Robot.move_east
     %{position: 3}
   """
-
-  def move(%{position: current_position}) do
+  def move_east(%{position: current_position}) do
     %{position: current_position + 1}
   end
 end

@@ -18,7 +18,7 @@ defmodule ToyRobot.Robot do
   end
 
   @doc """
-  Moves the robot east one space.
+  Moves the robot west one space.
 
   ## Examples
 

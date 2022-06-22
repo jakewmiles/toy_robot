@@ -49,6 +49,29 @@ defmodule ToyRobot.Robot do
     end
   end
 
+  @doc """
+  Moves the robot one space in the direction it's facing.
+
+  ## Examples
+
+  iex> alias ToyRobot.Robot
+  ToyRobot.Robot
+  iex> robot = %Robot{facing: :north}
+  %Robot{facing: :north}
+  iex> robot |> Robot.right
+  %Robot{facing: :east}
+  iex> robot |> Robot.right |> Robot.right |> Robot.right
+  %Robot{facing: :west}
+  """
+  def right(%Robot{facing: curr_facing} = robot) do
+    case curr_facing do
+      :north -> %{robot | facing: :east}
+      :east -> %{robot | facing: :south}
+      :south -> %{robot | facing: :west}
+      :west -> %{robot | facing: :north}
+    end
+  end
+
   defp move_east(%Robot{east: curr_east} = robot) do
     %{robot | east: curr_east + 1}
   end

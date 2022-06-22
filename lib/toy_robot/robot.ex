@@ -5,6 +5,11 @@ defmodule ToyRobot.Robot do
 
   defstruct @keys
 
+  @type t :: %__MODULE__{north: coord(), east: coord(), facing: direction()}
+
+  @type coord :: 0 | 1 | 2 | 3 | 4 | 5
+  @type direction :: :north | :east | :south | :west
+
   alias ToyRobot.Robot
 
   @doc """

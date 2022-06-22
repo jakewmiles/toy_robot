@@ -34,4 +34,22 @@ defmodule ToyRobot.Robot do
   def move_west(%{east: curr_east}) do
     %{east: curr_east - 1}
   end
+
+  @doc """
+  Moves the robot north one space.
+
+  ## Examples
+
+    iex> alias ToyRobot.Robot
+    ToyRobot.Robot
+    iex> robot = %{north: 0}
+    %{north: 0}
+    iex> robot |> Robot.move_north
+    %{north: 1}
+    iex> robot |> Robot.move_north |> Robot.move_north |> Robot.move_north
+    %{north: 3}
+  """
+  def move_north(%{north: curr_north}) do
+    %{north: curr_north + 1}
+  end
 end

@@ -12,16 +12,6 @@ defmodule ToyRobot.Robot do
 
   alias ToyRobot.Robot
 
-  @doc """
-  Places a new robot at the given coordinate, facing in the given direction.
-
-  ## Examples
-
-  iex> alias ToyRobot.Robot
-  ToyRobot.Robot
-  iex> Robot.place(0, 1, :north)
-  %Robot{north: 1, east: 0, facing: :north}
-  """
   def place(x, y, direction) do
     %Robot{
       north: validate_coord(y),
@@ -30,20 +20,6 @@ defmodule ToyRobot.Robot do
     }
   end
 
-  @doc """
-  Moves the robot one space in the direction it's facing.
-
-  ## Examples
-
-  iex> alias ToyRobot.Robot
-  ToyRobot.Robot
-  iex> robot = %Robot{north: 0, east: 0, facing: :north}
-  %Robot{north: 0, east: 0, facing: :north}
-  iex> robot |> Robot.move
-  %Robot{north: 1, east: 0, facing: :north}
-  iex> robot |> Robot.move |> Robot.move |> Robot.move
-  %Robot{north: 3, east: 0, facing: :north}
-  """
   def move(%Robot{facing: curr_facing} = robot) do
     case curr_facing do
       :north -> move_north(robot)
@@ -53,20 +29,6 @@ defmodule ToyRobot.Robot do
     end
   end
 
-  @doc """
-  Moves the robot one space in the direction it's facing.
-
-  ## Examples
-
-  iex> alias ToyRobot.Robot
-  ToyRobot.Robot
-  iex> robot = %Robot{facing: :north, east: 0, north: 0}
-  %Robot{facing: :north, east: 0, north: 0}
-  iex> robot |> Robot.left
-  %Robot{facing: :west, east: 0, north: 0}
-  iex> robot |> Robot.left |> Robot.left |> Robot.left
-  %Robot{facing: :east, east: 0, north: 0}
-  """
   def left(%Robot{facing: curr_facing} = robot) do
     case curr_facing do
       :north -> %{robot | facing: :west}
@@ -76,20 +38,6 @@ defmodule ToyRobot.Robot do
     end
   end
 
-  @doc """
-  Moves the robot one space in the direction it's facing.
-
-  ## Examples
-
-  iex> alias ToyRobot.Robot
-  ToyRobot.Robot
-  iex> robot = %Robot{facing: :north, east: 0, north: 0}
-  %Robot{facing: :north, east: 0, north: 0}
-  iex> robot |> Robot.right
-  %Robot{facing: :east, east: 0, north: 0}
-  iex> robot |> Robot.right |> Robot.right |> Robot.right
-  %Robot{facing: :west, east: 0, north: 0}
-  """
   def right(%Robot{facing: curr_facing} = robot) do
     case curr_facing do
       :north -> %{robot | facing: :east}
